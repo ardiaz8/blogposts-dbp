@@ -1,0 +1,19 @@
+# Node.js dependencies
+node_modules/
+
+# Environment variables
+.env
+
+# Log files
+*.log
+
+# Package lock file
+package-lock.json
+
+nodemon.json
+
+# IDE and editor specific files
+.vscode/
+.DS_Store
+
+.prettierrc

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <%- include('partials/head') %>
+
+  <body>
+    <%- include('partials/navbar') %>
+
+    <!-- Page Header-->
+    <header class="masthead" style="background-image: url('/img/new-post.jpg')">
+      <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="page-heading">
+              <h1>New Post</h1>
+              <!-- <span class="subheading">Have questions? I have answers.</span> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Main Content-->
+    <main class="mb-4">
+      <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <p>Enter the post information:</p>
+            <div class="my-5">
+
+              <% if(validationErrors && validationErrors.length) { %>
+                <ul class="list-group">
+                  <% for( let i = 0; i < validationErrors.length; i++ ) { %>
+                  <li class="list-group-item list-group-item-danger">
+                    <%= validationErrors[i] %>
+                  </li>
+                  <% } %>
+                </ul>
+              <% } %>
+
+              <form
+                action="/posts/store"
+                method="POST"
+                id="contactForm"
+                data-sb-form-api-token="API_TOKEN"
+              >
+                <div class="form-floating">
+                  <input
+                    class="form-control"
+                    id="title"
+                    type="text"
+                    placeholder="Enter a title..."
+                    data-sb-validations="required"
+                    name="title"
+                    value="<%= title %>"
+                  />
+                  <label for="title">Title</label>
+                </div>
+                
+                <div class="form-floating">
+                  <textarea
+                    class="form-control"
+                    id="summernote"
+                    placeholder="Enter some content..."
+                    style="height: 12rem"
+                    data-sb-validations="required"
+                    name="content"
+                  ><%= content %></textarea>
+                  
+                </div>
+                <script>
+                  $(document).ready(function() {
+                  $('#summernote').summernote({
+                    placeholder: 'Content',
+                    tabsize: 2,
+                    height: 100
+                  });
+                });
+                </script>
+                <br />
+                <!-- Submit Button-->
+                <button
+                  class="btn btn-primary text-uppercase"
+                  id="submitButton"
+                  type="submit"
+                >
+                  Send
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <%- include('partials/footer') %> <%- include('partials/scripts') %>
+  </body>
+</html>
